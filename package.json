@@ -1,0 +1,25 @@
+{
+  "name": "docker-to-iac",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Piotr Hajdas",
+    "email": "hello@deploy.my",
+    "url": "https://deploy.my"
+  },
+  "bugs": {
+    "url": "https://github.com/deploymy/docker-to-iac/issues"
+  },  
+  "homepage": "https://github.com/deploymy/docker-to-iac#readme",
+  "keywords": [
+    "Apache-2.0",
+    "Infrastructure as Code",
+    "IaC",
+    "CI/CD"
+  ],
+  "license": "Apache-2.0",
+  "description": "Translate docker-compose file to Infrastructure as Code"
+}
