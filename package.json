@@ -1,6 +1,6 @@
 {
   "name": "@deploymy/docker-to-iac",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "main": "dist/index.js",
   "scripts": {
     "test": "ts-node test/test.ts",
