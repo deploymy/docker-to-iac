@@ -35,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "eslint": "^9.11.1",
-    "globals": "^15.9.0"
+    "globals": "^15.9.0",
+    "ts-node": "^10.9.2"
   }
 }
