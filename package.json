@@ -1,16 +1,24 @@
 {
-  "name": "docker-to-iac",
-  "version": "1.0.0",
+  "name": "@deploymy/docker-to-iac",
+  "version": "0.0.0-development",
   "main": "dist/index.js",
   "scripts": {
     "test": "ts-node test/test.ts",
     "build": "tsc",
-    "lint": "eslint 'src/**/*.{ts,js}' 'test/**/*.{ts,js}'"
+    "lint": "eslint 'src/**/*.{ts,js}' 'test/**/*.{ts,js}'",
+    "semantic-release": "semantic-release"
   },
   "author": {
     "name": "Piotr Hajdas",
     "email": "hello@deploy.my",
     "url": "https://deploy.my"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "bugs": {
     "url": "https://github.com/deploymy/docker-to-iac/issues"
@@ -36,6 +44,8 @@
     "@typescript-eslint/parser": "^8.7.0",
     "eslint": "^9.11.1",
     "globals": "^15.9.0",
-    "ts-node": "^10.9.2"
+    "semantic-release": "^24.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
   }
 }
