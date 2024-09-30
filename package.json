@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": {
     "name": "Piotr Hajdas",
@@ -12,7 +13,7 @@
   },
   "bugs": {
     "url": "https://github.com/deploymy/docker-to-iac/issues"
-  },  
+  },
   "homepage": "https://github.com/deploymy/docker-to-iac#readme",
   "keywords": [
     "Apache-2.0",
@@ -21,5 +22,12 @@
     "CI/CD"
   ],
   "license": "Apache-2.0",
-  "description": "Translate docker-compose file to Infrastructure as Code"
+  "description": "Translate docker-compose file to Infrastructure as Code",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.7.4"
+  }
 }

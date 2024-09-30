@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+# Optional npm cache directory
+.npm
+package-lock.json
+# Yarn Dependency directories
+.pnp/
+.pnp.js
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.yarn/.package-lock.json
+
+# Prerequisite local environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDEs and editors
+.vscode/
+.idea/
+.DS_Store
+
+# Ignore build outputs
+dist/
+build/
+
+# Ignore TypeScript compiled outputs
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific and IDE-specific files
+Thumbs.db
+ehthumbs.db
+.public.svn
+.svn
+*.swp
+*~
+*#
+.project
+.settings
+.metadata
+*.iml
+*.ipr
+*.iws
+
+# Tests
+coverage/
+.jest/
+
+# Miscellaneous
+test/output-aws.json
+test/output-terraform.json
+test/output-digitalocean.json
