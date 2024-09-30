@@ -57,7 +57,6 @@ ehthumbs.db
 coverage/
 .jest/
 
-# Miscellaneous
-test/output-aws.json
-test/output-terraform.json
-test/output-digitalocean.json
+# Ignore all files in test/output except README.md
+test/output/*
+!test/output/README.md

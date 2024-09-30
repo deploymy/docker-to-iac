@@ -6,3 +6,5 @@ services:
       - "80:80"
   database:
     image: postgres
+    environment:
+      POSTGRES_PASSWORD: example
