@@ -21,12 +21,44 @@ import { readFileSync, writeFileSync } from 'fs';
 // Read Docker Compose file content as plain text
 const dockerComposeContent = readFileSync('path/to/docker-compose.yml', 'utf8');
 
-const translatedConfig = translate(dockerComposeContent, 'CFN');
+const translatedConfig = translate(dockerComposeContent, 'CFN', 'yaml');
 console.log(translatedConfig);
 
 // Write the translated config to a file
 writeFileSync('output-aws.json', JSON.stringify(translatedConfig, null, 2));
 ```
+
+### Translate API
+
+```javascript
+translate(DOCKER_COMPOSE_CONTENT, SUPPORTED_PLATFORMS, TEMPLATE_FORMAT)
+```
+
+#### `DOCKER_COMPOSE_CONTENT`
+
+The docker compose content you want to translate.
+
+#### `SUPPORTED_PLATFORMS`
+
+List of supported plattforms.
+
+Currently we support:
+
+- `CFN`: AWS CloudFormation
+  - Default output format: `yaml`
+
+#### `TEMPLATE_FORMAT`
+
+The response format, you want to get.
+
+Currently we support:
+
+- `json` - JavaScript Object Notation
+- `yaml` - yet another markup language
+- `plain` - for plain text
+
+> [!IMPORTANT]  
+> For some IaC languages ​​it doesn't make sense to output them in plain, JSON or YAML. For example: CloudFormation only accepts YAML or JSON. So be careful what you choose.
 
 ### Retrieving Parser Information
 
@@ -38,10 +70,6 @@ import { getParserInfo } from 'docker-to-iac';
 const awsInfo = getParserInfo('CFN');
 console.log(awsInfo);
 ```
-
-### Supported Platforms
-
-- `CFN`: AWS CloudFormation
 
 ## Development
 
