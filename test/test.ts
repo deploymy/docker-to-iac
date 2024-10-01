@@ -1,20 +1,17 @@
-import { translate, getParserInfo } from '../src/index';
-import { writeFileSync, mkdirSync, existsSync } from 'fs';
-import { join } from 'path';
+import { translate, getParserInfo, listAllParsers } from '../src/index';
+import { writeFileSync } from 'fs';
 
-// Ensure the output directory exists
-const outputDir = join(__dirname, 'output');
-if (!existsSync(outputDir)) {
-  mkdirSync(outputDir);
-}
-
-// Retrieve parser information
-const awsInfo = getParserInfo('aws-cloudformation');
+const awsInfo = getParserInfo('CFN');
 console.log('AWS CloudFormation Info:');
 console.log(awsInfo);
 
 // Testing AWS CloudFormation
-const awsConfig = translate(join(__dirname, 'sample-docker-compose.yml'), 'aws-cloudformation');
+const awsConfig = translate('test/sample-docker-compose.yml', 'CFN');
 console.log('AWS CloudFormation:');
 console.log(awsConfig);
-writeFileSync(join(outputDir, 'aws-cloudformation.json'), JSON.stringify(awsConfig, null, 2));
+writeFileSync('test/output/output-aws.json', JSON.stringify(awsConfig, null, 2));
+
+// List all available parsers
+const parsers = listAllParsers();
+console.log('Available Parsers:');
+console.log(parsers);
