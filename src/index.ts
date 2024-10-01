@@ -1,4 +1,4 @@
-import * as yaml from 'js-yaml';
+import * as YAML from 'yaml';
 import cloudFormationParserInstance from './parsers/aws-cloudformation';
 import { BaseParser, ParserInfo } from './parsers/base-parser';
 
@@ -12,7 +12,7 @@ const parsers: BaseParser[] = [
 // Updated translate function to take plain text as input
 function translate(dockerComposeContent: string, targetPlatform: string): any {
   try {
-    const dockerCompose = yaml.load(dockerComposeContent) as any;
+    const dockerCompose = YAML.parse(dockerComposeContent) as any;
 
     const parser = parsers.find(parser => parser.getInfo().abbreviation.toLowerCase() === targetPlatform.toLowerCase());
     if (!parser) {

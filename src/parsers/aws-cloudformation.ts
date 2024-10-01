@@ -21,7 +21,7 @@ class CloudFormationParser extends BaseParser {
 
     return {
       AWSTemplateFormatVersion: '2010-09-09',
-      Description: 'Translated from Docker Compose',
+      Description: 'Deplo.my CFN template translated from Docker compose',
       Resources: resources
     };
   }
