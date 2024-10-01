@@ -16,9 +16,12 @@ npm install
 
 ```typescript
 import { translate } from 'docker-to-iac';
-import { writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 
-const translatedConfig = translate('path/to/docker-compose.yml', 'aws-cloudformation');
+// Read Docker Compose file content as plain text
+const dockerComposeContent = readFileSync('path/to/docker-compose.yml', 'utf8');
+
+const translatedConfig = translate(dockerComposeContent, 'CFN');
 console.log(translatedConfig);
 
 // Write the translated config to a file
@@ -32,13 +35,13 @@ You can retrieve metadata about the available parsers as well:
 ```typescript
 import { getParserInfo } from 'docker-to-iac';
 
-const awsInfo = getParserInfo('aws-cloudformation');
+const awsInfo = getParserInfo('CFN');
 console.log(awsInfo);
 ```
 
 ### Supported Platforms
 
-- `aws-cloudformation`
+- `CFN`: AWS CloudFormation
 
 ## Development
 

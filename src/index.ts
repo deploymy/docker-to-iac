@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs';
 import * as yaml from 'js-yaml';
 import cloudFormationParserInstance from './parsers/aws-cloudformation';
 import { BaseParser, ParserInfo } from './parsers/base-parser';
@@ -10,10 +9,10 @@ const parsers: BaseParser[] = [
   // e.g., terraformParserInstance
 ];
 
-function translate(dockerComposeFilePath: string, targetPlatform: string): any {
+// Updated translate function to take plain text as input
+function translate(dockerComposeContent: string, targetPlatform: string): any {
   try {
-    const fileContents = readFileSync(dockerComposeFilePath, 'utf8');
-    const dockerCompose = yaml.load(fileContents) as any;
+    const dockerCompose = yaml.load(dockerComposeContent) as any;
 
     const parser = parsers.find(parser => parser.getInfo().abbreviation.toLowerCase() === targetPlatform.toLowerCase());
     if (!parser) {
@@ -23,7 +22,7 @@ function translate(dockerComposeFilePath: string, targetPlatform: string): any {
     const translatedConfig = parser.parse(dockerCompose);
     return translatedConfig;
   } catch (e) {
-    console.error(`Error translating docker-compose file: ${e}`);
+    console.error(`Error translating docker-compose content: ${e}`);
     return null;
   }
 }
