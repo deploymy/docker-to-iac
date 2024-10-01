@@ -2,7 +2,7 @@ import { BaseParser, ParserInfo, DockerCompose, TemplateFormat, formatResponse }
 
 class CloudFormationParser extends BaseParser {
   parse(dockerCompose: DockerCompose, templateFormat: TemplateFormat): any {
-    if (templateFormat === undefined) templateFormat = TemplateFormat.json;
+    if (templateFormat === undefined) templateFormat = TemplateFormat.yaml;
 
     let response: any = {};
     const parameters: any = {};

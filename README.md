@@ -15,7 +15,7 @@ npm install
 ### Translating Docker Compose to AWS CloudFormation
 
 ```typescript
-import { translate } from 'docker-to-iac';
+import { translate } from '@deploymy/docker-to-iac';
 import { readFileSync, writeFileSync } from 'fs';
 
 // Read Docker Compose file content as plain text
@@ -65,7 +65,7 @@ Currently we support:
 You can retrieve metadata about the available parsers as well:
 
 ```typescript
-import { getParserInfo } from 'docker-to-iac';
+import { getParserInfo } from '@deploymy/docker-to-iac';
 
 const awsInfo = getParserInfo('CFN');
 console.log(awsInfo);
@@ -134,12 +134,16 @@ To add a new Infrastructure as Code (IaC) provider, follow these steps:
 
 ```typescript
 // src/parsers/new-provider.ts
-import { BaseParser, ParserInfo } from './base-parser';
+import { BaseParser, ParserInfo, DockerCompose, TemplateFormat, formatResponse } from './base-parser';
 
 class NewProviderParser extends BaseParser {
-  parse(dockerCompose: any): any {
+  parse(dockerCompose: DockerCompose, templateFormat: TemplateFormat): any {
+    // chose the default template response format
+    if (templateFormat === undefined) templateFormat = TemplateFormat.json;
+
+    let response: any = {};
     // Implement the logic to translate Docker Compose to the new provider's format
-    return {};
+    return formatResponse(JSON.stringify(response, null, 2), templateFormat);
   }
 
   getInfo(): ParserInfo {
