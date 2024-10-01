@@ -46,6 +46,7 @@ console.log(awsInfo);
 
 ```
 docker-to-iac/
+|-- .github
 |-- dist/
 |-- src/
 |   |-- index.ts
@@ -58,8 +59,12 @@ docker-to-iac/
 |       |-- README.md
 |   |-- test.ts
 |-- .gitignore
+|-- eslint.config.mjs
+|-- LICENSE
 |-- README.md
+|-- package-lock.json
 |-- package.json
+|-- release.config.cjs
 |-- tsconfig.json
 ```
 
@@ -70,9 +75,9 @@ docker-to-iac/
   npm run build
   ```
 
-- **Start**: Run the project using `ts-node` (for development).
+- **Lint**: Run the lint script.
   ```sh
-  npm run start
+  npm run lint
   ```
 
 - **Test**: Run the test script.
@@ -92,7 +97,7 @@ To add a new Infrastructure as Code (IaC) provider, follow these steps:
   
 2. **Extend the `BaseParser` class** and implement the `parse` and `getInfo` methods.
 
-3. **Update the `translate` and `getParserInfo` functions** in `src/index.ts` to include the new parser.
+3. **Update the `parsers` array** in `src/index.ts` to include the new parser.
 
 ### Example of a New Parser
 
@@ -123,10 +128,11 @@ export default new NewProviderParser();
 // src/index.ts
 import newProviderParserInstance from './parsers/new-provider';
 
-// Inside translate and getParserInfo functions
-case 'new-provider':
-  parser = newProviderParserInstance;
-  break;
+// List of all available parsers
+const parsers: BaseParser[] = [
+  cloudFormationParserInstance,
+  newProviderParserInstance // Add new parsers here
+];
 ```
 
 ## License
