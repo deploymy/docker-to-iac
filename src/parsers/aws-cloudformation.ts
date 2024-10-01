@@ -1,8 +1,16 @@
-import { BaseParser, ParserInfo, DockerCompose } from './base-parser';
+import { BaseParser, ParserInfo, DockerCompose, TemplateFormat, formatResponse } from './base-parser';
 
 class CloudFormationParser extends BaseParser {
-  parse(dockerCompose: DockerCompose): any {
+  parse(dockerCompose: DockerCompose, templateFormat: TemplateFormat): any {
+    if (templateFormat === undefined) templateFormat = TemplateFormat.json;
+
+    let response: any = {};
+    const parameters: any = {};
     const resources: any = {};
+    const outputs: any = {};
+
+    // Mandatory Template Values
+    // ...
 
     // Populate resources based on dockerCompose contents
     for (const [serviceName, serviceConfig] of Object.entries(dockerCompose.services)) {
@@ -19,11 +27,15 @@ class CloudFormationParser extends BaseParser {
       // Add other service resources here as needed
     }
 
-    return {
+    response = {
       AWSTemplateFormatVersion: '2010-09-09',
       Description: 'Deplo.my CFN template translated from Docker compose',
-      Resources: resources
+      Parameters: parameters,
+      Resources: resources,
+      Outputs: outputs
     };
+
+    return formatResponse(JSON.stringify(response, null, 2), templateFormat);
   }
 
   getInfo(): ParserInfo {

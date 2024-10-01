@@ -1,6 +1,6 @@
 import * as YAML from 'yaml';
 import cloudFormationParserInstance from './parsers/aws-cloudformation';
-import { BaseParser, ParserInfo } from './parsers/base-parser';
+import { BaseParser, ParserInfo, TemplateFormat } from './parsers/base-parser';
 
 // List of all available parsers
 const parsers: BaseParser[] = [
@@ -9,8 +9,7 @@ const parsers: BaseParser[] = [
   // e.g., terraformParserInstance
 ];
 
-// Updated translate function to take plain text as input
-function translate(dockerComposeContent: string, targetPlatform: string): any {
+function translate(dockerComposeContent: string, targetPlatform: string, templateFormat?: TemplateFormat): any {
   try {
     const dockerCompose = YAML.parse(dockerComposeContent) as any;
 
@@ -19,7 +18,7 @@ function translate(dockerComposeContent: string, targetPlatform: string): any {
       throw new Error(`Unsupported target platform: ${targetPlatform}`);
     }
 
-    const translatedConfig = parser.parse(dockerCompose);
+    const translatedConfig = parser.parse(dockerCompose, templateFormat);
     return translatedConfig;
   } catch (e) {
     console.error(`Error translating docker-compose content: ${e}`);
