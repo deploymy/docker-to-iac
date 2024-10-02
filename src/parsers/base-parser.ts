@@ -5,11 +5,21 @@ export type ParserInfo = {
   officialDocs: string;
   abbreviation: string;
   name: string;
+  defaultParserConfig: DefaultParserConfig
+};
+
+export type DefaultParserConfig = {
+  cpu: any;
+  memory: any;
+  templateFormat: TemplateFormat;
 };
 
 export interface DockerComposeService {
   image: string;
   ports?: string[];
+  command?: string;
+  restart?: string;
+  volumes?: string[];
   environment?: { [key: string]: string };
 }
 
@@ -30,7 +40,7 @@ export function formatResponse(response: string, templateFormat: TemplateFormat)
     case TemplateFormat.json:
       return JSON.parse(response);
     case TemplateFormat.yaml:
-      return YAML.stringify(JSON.parse(response));
+      return YAML.stringify(JSON.parse(response), {sortMapEntries: false});
     default:
       return response;
   }
