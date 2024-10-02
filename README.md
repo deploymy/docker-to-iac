@@ -7,7 +7,7 @@ A Node.js module to translate Docker Compose files into AWS CloudFormation and m
 First, install the module and its dependencies:
 
 ```sh
-npm install
+npm i @deploymy/docker-to-iac
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ import { readFileSync, writeFileSync } from 'fs';
 // Read Docker Compose file content as plain text
 const dockerComposeContent = readFileSync('path/to/docker-compose.yml', 'utf8');
 
-const translatedConfig = translate(dockerComposeContent, 'CFN', 'yaml');
+const translatedConfig = translate(dockerComposeContent, 'CFN');
 console.log(translatedConfig);
 
 // Write the translated config to a file
@@ -47,7 +47,7 @@ Currently we support:
 - `CFN`: AWS CloudFormation
   - Default output format: `yaml`
 
-#### `TEMPLATE_FORMAT`
+#### `TEMPLATE_FORMAT` (Optional)
 
 The response format, you want to get.
 
@@ -134,10 +134,16 @@ To add a new Infrastructure as Code (IaC) provider, follow these steps:
 
 ```typescript
 // src/parsers/new-provider.ts
-import { BaseParser, ParserInfo, DockerCompose, TemplateFormat, formatResponse } from './base-parser';
+import { BaseParser, ParserInfo, DockerCompose, TemplateFormat, formatResponse, DefaultParserConfig } from './base-parser';
+
+const defaultParserConfig: DefaultParserConfig = {
+  cpu: 512,
+  memory: '1GB',
+  templateFormat: TemplateFormat.yaml
+};
 
 class NewProviderParser extends BaseParser {
-  parse(dockerCompose: DockerCompose, templateFormat: TemplateFormat): any {
+  parse(dockerCompose: DockerCompose, templateFormat: TemplateFormat = defaultParserConfig.templateFormat): any {
     // chose the default template response format
     if (templateFormat === undefined) templateFormat = TemplateFormat.json;
 
@@ -151,7 +157,8 @@ class NewProviderParser extends BaseParser {
       website: "https://newprovider.com",
       officialDocs: "https://docs.newprovider.com",
       abbreviation: "NP",
-      name: "New Provider"
+      name: 'AWS CloudFormation',
+      defaultParserConfig: defaultParserConfig
     };
   }
 }
