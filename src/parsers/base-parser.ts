@@ -9,9 +9,12 @@ export type ParserInfo = {
 };
 
 export type DefaultParserConfig = {
-  cpu: any;
-  memory: any;
   templateFormat: TemplateFormat;
+  cpu?: any;
+  memory?: any;
+  region?: string;
+  fileName?: string;
+  subscriptionName?: string;
 };
 
 export interface DockerComposeService {
