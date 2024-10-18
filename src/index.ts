@@ -1,10 +1,12 @@
 import * as YAML from 'yaml';
 import cloudFormationParserInstance from './parsers/aws-cloudformation';
+import renderParserInstance from './parsers/render';
 import { BaseParser, ParserInfo, TemplateFormat } from './parsers/base-parser';
 
 // List of all available parsers
 const parsers: BaseParser[] = [
   cloudFormationParserInstance,
+  renderParserInstance,
   // Add new parsers here in the future as needed,
   // e.g., terraformParserInstance
 ];
