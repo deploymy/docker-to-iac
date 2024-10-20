@@ -16,10 +16,10 @@ const dockerComposeContent = readFileSync('test/sample-docker-compose.yml', 'utf
 // =================================================================================================
 
 // Testing AWS CloudFormation Text
-const awsConfigPlain = translate(dockerComposeContent, 'CFN', TemplateFormat.plain);
-console.log(`AWS CloudFormation ${TemplateFormat.plain}:`);
+const awsConfigPlain = translate(dockerComposeContent, 'CFN', TemplateFormat.text);
+console.log(`AWS CloudFormation ${TemplateFormat.text}:`);
 console.log(awsConfigPlain);
-writeFileSync(`test/output/output-aws-${TemplateFormat.plain}.txt`, awsConfigPlain);
+writeFileSync(`test/output/output-aws-${TemplateFormat.text}.txt`, awsConfigPlain);
 
 // Testing AWS CloudFormation JSON
 const awsConfigJson = translate(dockerComposeContent, 'CFN', TemplateFormat.json);
@@ -36,10 +36,10 @@ writeFileSync(`test/output/output-aws-${TemplateFormat.yaml}.yml`, awsConfigYaml
 // =================================================================================================
 
 // Testing Render Text
-const renderConfigText = translate(dockerComposeContent, 'RND', TemplateFormat.plain);
+const renderConfigText = translate(dockerComposeContent, 'RND', TemplateFormat.text);
 console.log('Render Text:');
 console.log(renderConfigText);
-writeFileSync(`test/output/output-render-${TemplateFormat.plain}.txt`, renderConfigText);
+writeFileSync(`test/output/output-render-${TemplateFormat.text}.txt`, renderConfigText);
 
 // Testing Render JSON
 const renderConfigJson = translate(dockerComposeContent, 'RND', TemplateFormat.json);
