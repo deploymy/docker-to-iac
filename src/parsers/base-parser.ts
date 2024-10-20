@@ -35,7 +35,7 @@ export interface DockerCompose {
 export enum TemplateFormat {
   json = 'json',
   yaml = 'yaml',
-  plain = 'plain'
+  text = 'text'
 }
 
 export function formatResponse(response: string, templateFormat: TemplateFormat)  {
